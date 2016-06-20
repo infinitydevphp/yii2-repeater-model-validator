@@ -46,6 +46,9 @@ class MultipleModelValidator extends Validator
      * used when the most important validation condition is not met.
      */
     public $message = "Invalid multiple model data";
+    protected $_model;
+    protected $_attributeName = '';
+    public $attribute = '';
 
     /**
      * Validates a single model attribute.
@@ -55,6 +58,8 @@ class MultipleModelValidator extends Validator
      */
     public function validateAttribute($model, $attribute)
     {
+        $this->_model = $model;
+        $this->_attributeName = $attribute;
         $result = $this->validateValue($model->$attribute);
         if (!empty($result)) {
             $this->addError($model, $attribute, $result[0], $result[1]);
@@ -67,25 +72,31 @@ class MultipleModelValidator extends Validator
      * @return array|null the error message and the parameters to be inserted into the error message.
      * Null should be returned if the data is valid.
      */
-    public function validateValue($attribute) {
+    public function validateValue($value) {
 
-        if ((!is_array($this->$attribute) || !count($this->$attribute)) && $this->skipOnEmpty) {
+        $model = &$this->_model;
+
+        $attribute = $this->_attributeName;
+        if ((!is_array($model->$attribute) || !count($model->$attribute)) && $this->skipOnEmpty) {
             return '';
         }
 
-        $result = count($this->$attribute) > 0;
+        $result = count($model->$attribute) > 0;
         $class = $this->baseModel;
 
-        foreach ($this->$attribute as $_key => &$_model) {
+        foreach ($model->$attribute as $_key => &$_model) {
             /** @var $_model Model|ActiveRecord */
             if (!is_object($_model)) {
+                if (!is_array($_model)) {
+                    $_model = [$this->attribute ? : $this->_attributeName => $_model];
+                }
                 $_model = new $class($_model);
             }
 
             $result = $_model->validate() && $result;
         }
 
-        return $result ? '' : [$this->message, $result];
+        return $result || (sizeof($model->$attribute)==1 && $this->skipOnEmpty) ? null : [$this->message, $result];
     }
 
     /**
@@ -110,7 +121,7 @@ class MultipleModelValidator extends Validator
         $clientValidators = [];
         foreach ($activeValidators as $_next) {
             foreach ($_next->attributes as $_attribute) {
-                if (!is_array($clientValidators[$_attribute])) {
+                if (!(isset($clientValidators[$_attribute]) && is_array($clientValidators[$_attribute]))) {
                     $clientValidators[$_attribute] = [];
                 }
                 $clientValidators[$_attribute][$_next->className()] = new JsExpression(

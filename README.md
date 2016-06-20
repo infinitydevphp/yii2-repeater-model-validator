@@ -10,7 +10,7 @@ And use widget (extend from [\unclead\widgets\MultipleInput](https://github.com/
 $options = [];
 
 $form->field($model, 'attribute_name')
-    ->widget(infinitydevphp\MultipleModelValidator\MultipleModelValidator::className, $options);
+    ->widget(\infinitydevphp\MultipleModelValidator\widgets\MultipleInput::className(), $options);
 ```
 
 # Widget options

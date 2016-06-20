@@ -10,14 +10,16 @@ use unclead\widgets\MultipleInputColumn;
 use yii\base\ErrorException;
 use yii\base\Model;
 use yii\db\ActiveRecord;
+use common\helpers\Debug;
 use yii\web\JsExpression;
+use \unclead\widgets\MultipleInput as BaseMultipleInput;
 
 /**
  * Class MultipleInput
  * @package infinitydevphp\MultipleModelValidator\widgets
  * @author infinitydevphp <infinitydevphp@gmail.com>
  */
-class MultipleInput extends \unclead\widgets\MultipleInput
+class MultipleInput extends BaseMultipleInput
 {
     public $baseModel = null;
     public $skipAttributes = ['id'];
@@ -35,7 +37,7 @@ class MultipleInput extends \unclead\widgets\MultipleInput
         }
 
         $attrPart = explode(']', $this->attribute);
-        $this->_realAttribute = end($attrPart);
+        $this->_realAttribute = $this->attribute; //end($attrPart);
 
         if (is_null($this->data) && $this->model instanceof Model) {
             $this->data = [];

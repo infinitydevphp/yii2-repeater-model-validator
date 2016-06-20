@@ -12,3 +12,4 @@ composer.lock
 TableGenerator.iml
 basic/
 node_modules/
+*.sh
