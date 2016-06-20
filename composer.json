@@ -1,0 +1,22 @@
+{
+  "name": "infinitydevphp/yii2-repeater-model-validator",
+  "description": "Yii2 model repeater validator",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "infinitydevphp",
+      "email": "infinitydevphp@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.5.0",
+    "yiisoft/yii2": "^2.0.8",
+    "unclead/yii2-multiple-input": ">=1.2"
+  },
+  "autoload": {
+    "psr-4": {
+      "infinitydevphp\\MultipleModelValidator\\": "src/"
+    }
+  }
+}

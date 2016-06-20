@@ -1,0 +1,29 @@
+{
+  "name": "multiplevalidatorjszip",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/infinitydevphp/yii2-repeater-model-validator.git"
+  },
+  "authors": [
+    {
+      "name": "InfinityDevPhp",
+      "email": "infinitydevphp@gmail.com"
+    }
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/infinitydevphp/yii2-repeater-model-validator/issues"
+  },
+  "homepage": "https://github.com/infinitydevphp/yii2-repeater-model-validator#readme",
+  "dependencies": {
+    "gulp": "^3.9.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^1.5.3"
+  }
+}
