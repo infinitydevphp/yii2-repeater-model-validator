@@ -3,6 +3,7 @@
  */
 
 yii.validation.multipleModel = function (attribute, value, messages, options, deferred, $form) {
+    console.log(arguments);
     function getId(index, attributeName) {
         var parts = [
             options.modelName.toLowerCase(),
@@ -70,6 +71,7 @@ yii.validation.multipleModel.addRow = function (event) {
         data = $form.data('yiiActiveForm'),
         $this = $(this),
         $elem = $this.find('input, select, textarea').eq(0);
+    console.log($form, data, $this, $elem);
 
     if (typeof data === "object" && data.attributes === "object") {
         $.each(data.attributes, function (index, value) {
@@ -88,6 +90,7 @@ yii.validation.multipleModel.deleteRow = function () {
         data = $form.data('yiiActiveForm'),
         $this = $(this),
         $elem = $this.find('input, select, textarea').eq(0);
+    console.log($form, data, $this, $elem);
 
     if (typeof data === "object" && data.attributes === "object") {
         $.each(data.attributes, function (index, value) {
