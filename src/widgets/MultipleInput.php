@@ -7,10 +7,8 @@ namespace infinitydevphp\MultipleModelValidator\widgets;
 
 
 use unclead\widgets\MultipleInputColumn;
-use yii\base\ErrorException;
 use yii\base\Model;
 use yii\db\ActiveRecord;
-use common\helpers\Debug;
 use yii\web\JsExpression;
 use \unclead\widgets\MultipleInput as BaseMultipleInput;
 

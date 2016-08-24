@@ -150,8 +150,6 @@ class MultipleModelValidator extends Validator
 
         $str =  'yii.validation.multipleModel(attribute, value, messages, ' . Json::encode($options) . ", deferred, \$form);";
 
-        var_dump($str);
-
         return $str;
     }
 }
